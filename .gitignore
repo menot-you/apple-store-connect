@@ -1,5 +1,10 @@
 /target
 Cargo.lock
 .env
-*.p8
+
+# Real Apple API keys — never commit these
+AuthKey_*.p8
 *.pem
+
+# Allow test fixtures — these are generated keys with no Apple association
+!tests/fixtures/*.p8

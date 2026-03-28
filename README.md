@@ -1,18 +1,72 @@
 # asc-mcp
 
-MCP server for the Apple App Store Connect API — Xcode Cloud operations, app management, customer reviews, and sales reports.
+[![CI](https://github.com/menot-you/asc-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/menot-you/asc-mcp/actions/workflows/ci.yml)
+[![crates.io](https://img.shields.io/crates/v/asc-mcp.svg)](https://crates.io/crates/asc-mcp)
+[![docs.rs](https://docs.rs/asc-mcp/badge.svg)](https://docs.rs/asc-mcp)
+[![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
+[![Rust 1.85+](https://img.shields.io/badge/rust-1.85%2B-orange.svg)](https://www.rust-lang.org)
+[![MCP Protocol](https://img.shields.io/badge/MCP-2024--11--05-purple.svg)](https://modelcontextprotocol.io)
 
-Works with Claude Code, Cursor, Windsurf, and any other [MCP](https://modelcontextprotocol.io) client.
+MCP server for the Apple App Store Connect API — Xcode Cloud CI, app management, customer reviews, and sales reports.
+
+Works with Claude Code, Cursor, Windsurf, and any [MCP](https://modelcontextprotocol.io)-compatible client.
+
+---
+
+## How it works
+
+```mermaid
+sequenceDiagram
+    participant C as MCP Client<br/>(Claude Code, Cursor…)
+    participant S as asc-mcp
+    participant A as App Store Connect API
+
+    C->>S: initialize (stdio)
+    S-->>C: serverInfo + capabilities
+
+    C->>S: tools/list
+    S-->>C: 11 tools with JSON Schema
+
+    C->>S: tools/call list_products
+    S->>S: generate JWT (ES256, cached 15m)
+    S->>A: GET /v1/ciProducts
+    A-->>S: JSON:API response
+    S-->>C: pretty JSON result
+```
+
+---
+
+## Architecture
+
+```mermaid
+graph TD
+    Client["MCP Client<br/>(Claude Code / Cursor / Windsurf)"]
+    Server["AscMcpServer<br/>tools.rs — rmcp #[tool_router]"]
+    HttpClient["AscClient<br/>client.rs + client_endpoints.rs"]
+    Auth["Credentials<br/>auth.rs — ES256 JWT cache"]
+    Models["models/<br/>JSON:API types"]
+    API["App Store Connect API v1<br/>api.appstoreconnect.apple.com"]
+
+    Client -->|stdio MCP protocol| Server
+    Server --> HttpClient
+    HttpClient --> Auth
+    HttpClient --> Models
+    HttpClient -->|HTTPS| API
+```
+
+---
 
 ## Features
 
 - **Xcode Cloud CI/CD** — list products, workflows, build runs, actions; trigger builds
-- **App management** — list and inspect apps in App Store Connect
-- **Customer reviews** — fetch reviews with full pagination
+- **App management** — list and inspect apps
+- **Customer reviews** — fetch with full auto-pagination
 - **Sales reports** — download and parse gzip-compressed TSV reports
-- **JWT authentication** — ES256 tokens auto-generated and cached (15-minute TTL)
-- **Rate-limit handling** — automatic retry with `Retry-After` respect
+- **JWT auth** — ES256 tokens generated and cached for 15 minutes
+- **Rate-limit handling** — automatic retry with `Retry-After` respect (3 attempts)
 - **Zero config** — three env vars and you're running
+
+---
 
 ## Installation
 
@@ -28,6 +82,8 @@ cd asc-mcp
 cargo install --path .
 ```
 
+---
+
 ## Configuration
 
 Generate an API key at [App Store Connect → Users and Access → Integrations → App Store Connect API](https://appstoreconnect.apple.com/access/integrations/api).
@@ -38,11 +94,13 @@ Generate an API key at [App Store Connect → Users and Access → Integrations 
 | `ASC_ISSUER_ID` | Issuer ID shown at the top of the API keys page |
 | `ASC_PRIVATE_KEY_PATH` | Path to the `.p8` file downloaded from App Store Connect |
 
+---
+
 ## Usage
 
 ### Claude Code
 
-Add to `~/.claude/claude_desktop_config.json` (or your MCP client config):
+Add to `~/.claude/claude_desktop_config.json`:
 
 ```json
 {
@@ -61,46 +119,83 @@ Add to `~/.claude/claude_desktop_config.json` (or your MCP client config):
 
 ### Cursor / Windsurf / other MCP clients
 
-Same JSON structure — just add it to your client's MCP server configuration.
+Same structure — add to your client's MCP server config file.
+
+---
 
 ## Available Tools
 
 ### Xcode Cloud
 
-| Tool | Description | Parameters |
+```mermaid
+graph LR
+    list_products --> get_product
+    get_product --> list_workflows
+    list_workflows --> list_build_runs
+    list_workflows --> start_build
+    list_build_runs --> get_build_run
+    get_build_run --> list_build_actions
+```
+
+| Tool | Parameters | Description |
 |---|---|---|
-| `list_products` | List all Xcode Cloud CI products | — |
-| `get_product` | Get details of a specific CI product | `product_id` |
-| `list_workflows` | List workflows for a CI product | `product_id` |
-| `list_build_runs` | List build runs for a workflow | `workflow_id` |
-| `get_build_run` | Get details of a specific build run | `build_run_id` |
-| `start_build` | Trigger a new build | `workflow_id`, `git_reference_id` |
-| `list_build_actions` | List actions in a build run | `build_run_id` |
+| `list_products` | — | List all Xcode Cloud CI products |
+| `get_product` | `product_id` | Get details of a specific CI product |
+| `list_workflows` | `product_id` | List workflows for a CI product |
+| `list_build_runs` | `workflow_id` | List build runs for a workflow |
+| `get_build_run` | `build_run_id` | Get details of a specific build run |
+| `start_build` | `workflow_id`, `git_reference_id` | Trigger a new build |
+| `list_build_actions` | `build_run_id` | List actions inside a build run |
 
-### Apps
+### Apps & Reviews
 
-| Tool | Description | Parameters |
+| Tool | Parameters | Description |
 |---|---|---|
-| `list_apps` | List all apps in App Store Connect | — |
-| `get_app` | Get details of a specific app | `app_id` |
+| `list_apps` | — | List all apps in App Store Connect |
+| `get_app` | `app_id` | Get details of a specific app |
+| `list_customer_reviews` | `app_id` | List customer reviews for an app |
 
-### Reviews & Reports
+### Sales Reports
 
-| Tool | Description | Parameters |
+| Tool | Parameters | Description |
 |---|---|---|
-| `list_customer_reviews` | List customer reviews for an app | `app_id` |
-| `get_sales_report` | Download and parse a sales report | `vendor_number`, `report_type`, `report_sub_type`, `frequency`, `report_date` |
+| `get_sales_report` | `vendor_number`, `report_type`, `report_sub_type`, `frequency`, `report_date` | Download and parse a sales report |
+
+`report_type` values: `SALES`, `SUBSCRIPTION`, `SUBSCRIPTION_EVENT`
+`frequency` values: `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`
+`report_date` format: `YYYY-MM-DD`
+
+---
+
+## Token lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> NoToken
+    NoToken --> Generating: first request
+    Generating --> Cached: JWT signed (ES256)
+    Cached --> Cached: elapsed < 15m → reuse
+    Cached --> Generating: elapsed ≥ 15m → refresh
+```
+
+Apple allows 20-minute tokens; this server uses 15-minute TTL for a 5-minute clock-skew buffer.
+
+---
 
 ## Development
 
 ```bash
-cargo test
+cargo test          # 47 tests, no credentials needed
 cargo clippy -- -D warnings
 cargo fmt --check
 cargo doc --no-deps
 ```
 
-Tests use `wiremock` for real HTTP-level mocking — no Apple credentials needed.
+Tests use [`wiremock`](https://github.com/LukeMathWalker/wiremock-rs) for real HTTP-level mocking — no Apple account required.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide and [ARCHITECTURE.md](ARCHITECTURE.md) for the design walkthrough.
+
+---
 
 ## License
 
