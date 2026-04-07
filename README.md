@@ -3,7 +3,7 @@
 [![CI](https://github.com/menot-you/asc-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/menot-you/asc-mcp/actions/workflows/ci.yml)
 [![crates.io](https://img.shields.io/crates/v/asc-mcp.svg)](https://crates.io/crates/asc-mcp)
 [![docs.rs](https://docs.rs/asc-mcp/badge.svg)](https://docs.rs/asc-mcp)
-[![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](#license)
 [![Rust 1.85+](https://img.shields.io/badge/rust-1.85%2B-orange.svg)](https://www.rust-lang.org)
 [![MCP Protocol](https://img.shields.io/badge/MCP-2024--11--05-purple.svg)](https://modelcontextprotocol.io)
 
@@ -199,9 +199,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide and [ARCHITECTURE.md](
 
 ## License
 
-Licensed under either of:
-
-- [Apache License, Version 2.0](LICENSE-APACHE)
-- [MIT License](LICENSE-MIT)
-
-at your option.
+[AGPL-3.0-or-later](LICENSE) — see the [LICENSE](LICENSE) file for details.

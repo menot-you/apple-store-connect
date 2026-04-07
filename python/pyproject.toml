@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "asc-mcp"
+version = "0.1.0"
+description = "MCP server for Apple App Store Connect API — Xcode Cloud, app management, reviews, sales reports."
+readme = "../README.md"
+license = "AGPL-3.0-or-later"
+requires-python = ">=3.9"
+keywords = ["mcp", "xcode-cloud", "app-store-connect", "apple", "ci-cd"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Testing",
+]
+
+[project.urls]
+Homepage = "https://github.com/menot-you/asc-mcp"
+Repository = "https://github.com/menot-you/asc-mcp"
+
+[project.scripts]
+asc-mcp = "asc_mcp:main"

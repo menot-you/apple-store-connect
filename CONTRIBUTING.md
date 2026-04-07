@@ -80,4 +80,4 @@ Use GitHub Issues for:
 
 ## License
 
-By contributing, you agree that your contributions will be dual-licensed under MIT and Apache 2.0, matching the project license.
+By contributing, you agree that your contributions will be licensed under AGPL-3.0-or-later, matching the project license.
