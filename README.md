@@ -1,17 +1,23 @@
-# asc-mcp
+<div align="center">
+
+# Apple Store Connect
 
 [![CI](https://github.com/menot-you/apple-store-connect/actions/workflows/ci.yml/badge.svg)](https://github.com/menot-you/apple-store-connect/actions/workflows/ci.yml)
-[![crates.io](https://img.shields.io/crates/v/menot-you-mcp-asc.svg)](https://crates.io/crates/menot-you-mcp-asc)
 [![docs.rs](https://docs.rs/menot-you-mcp-asc/badge.svg)](https://docs.rs/menot-you-mcp-asc)
+
+[![crates.io](https://img.shields.io/crates/v/menot-you-mcp-asc.svg)](https://crates.io/crates/menot-you-mcp-asc)
 [![npm](https://img.shields.io/npm/v/@menot-you/mcp-asc.svg)](https://www.npmjs.com/package/@menot-you/mcp-asc)
 [![PyPI](https://img.shields.io/pypi/v/menot-you-mcp-asc.svg)](https://pypi.org/project/menot-you-mcp-asc/)
-[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
+
 [![Rust 1.85+](https://img.shields.io/badge/rust-1.85%2B-orange.svg)](https://www.rust-lang.org)
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
 [![MCP Protocol](https://img.shields.io/badge/MCP-2024--11--05-purple.svg)](https://modelcontextprotocol.io)
 
 MCP server for the Apple App Store Connect API — Xcode Cloud CI, app management, customer reviews, and sales reports.
 
 Works with Claude Code, Cursor, Windsurf, and any [MCP](https://modelcontextprotocol.io)-compatible client.
+
+</div>
 
 ---
 
