@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "asc-mcp"
-version = "0.1.1"
+name = "menot-you-mcp-asc"
+version = "0.2.0"
 description = "MCP server for Apple App Store Connect API — Xcode Cloud, app management, reviews, sales reports."
 readme = "../README.md"
 license = "AGPL-3.0-or-later"
@@ -22,4 +22,5 @@ Homepage = "https://github.com/menot-you/apple-store-connect"
 Repository = "https://github.com/menot-you/apple-store-connect"
 
 [project.scripts]
-asc-mcp = "asc_mcp:main"
+mcp-asc = "menot_you_mcp_asc:main"
+asc-mcp = "menot_you_mcp_asc:main"

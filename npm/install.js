@@ -8,7 +8,7 @@ const https = require("https");
 
 const VERSION = require("./package.json").version;
 const BINARY = "asc-mcp";
-const REPO = "menot-you/asc-mcp";
+const REPO = "menot-you/apple-store-connect";
 
 function getPlatform() {
   const platform = process.platform;
@@ -20,7 +20,7 @@ function getPlatform() {
   throw new Error(
     `Unsupported platform: ${platform}-${arch}. ` +
       `Supported: darwin-arm64, linux-x64. ` +
-      `Install from source: cargo install asc-mcp`
+      `Install from source: cargo install menot-you-mcp-asc`
   );
 }
 
@@ -59,7 +59,7 @@ async function main() {
     console.log(`asc-mcp: installed ${BINARY} (${(data.length / 1024 / 1024).toFixed(1)} MB)`);
   } catch (err) {
     console.error(`asc-mcp: failed to download binary — ${err.message}`);
-    console.error(`asc-mcp: you can install from source: cargo install asc-mcp`);
+    console.error(`asc-mcp: you can install from source: cargo install menot-you-mcp-asc`);
     // Don't fail the install — the run.js wrapper will show a helpful error
   }
 }

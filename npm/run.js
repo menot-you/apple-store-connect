@@ -13,8 +13,8 @@ if (!fs.existsSync(binaryPath)) {
     `asc-mcp: binary not found at ${binaryPath}\n` +
       `This usually means the postinstall download failed.\n` +
       `\nAlternatives:\n` +
-      `  cargo install asc-mcp    # if you have Rust\n` +
-      `  curl -fsSL https://raw.githubusercontent.com/menot-you/asc-mcp/main/install.sh | sh\n`
+      `  cargo install menot-you-mcp-asc    # if you have Rust\n` +
+      `  curl -fsSL https://raw.githubusercontent.com/menot-you/apple-store-connect/main/install.sh | sh\n`
   );
   process.exit(1);
 }

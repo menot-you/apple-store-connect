@@ -1,10 +1,10 @@
 # asc-mcp
 
 [![CI](https://github.com/menot-you/apple-store-connect/actions/workflows/ci.yml/badge.svg)](https://github.com/menot-you/apple-store-connect/actions/workflows/ci.yml)
-[![crates.io](https://img.shields.io/crates/v/asc-mcp.svg)](https://crates.io/crates/asc-mcp)
-[![docs.rs](https://docs.rs/asc-mcp/badge.svg)](https://docs.rs/asc-mcp)
-[![npm](https://img.shields.io/npm/v/asc-mcp.svg)](https://www.npmjs.com/package/asc-mcp)
-[![PyPI](https://img.shields.io/pypi/v/asc-mcp.svg)](https://pypi.org/project/asc-mcp/)
+[![crates.io](https://img.shields.io/crates/v/menot-you-mcp-asc.svg)](https://crates.io/crates/menot-you-mcp-asc)
+[![docs.rs](https://docs.rs/menot-you-mcp-asc/badge.svg)](https://docs.rs/menot-you-mcp-asc)
+[![npm](https://img.shields.io/npm/v/@menot-you/mcp-asc.svg)](https://www.npmjs.com/package/@menot-you/mcp-asc)
+[![PyPI](https://img.shields.io/pypi/v/menot-you-mcp-asc.svg)](https://pypi.org/project/menot-you-mcp-asc/)
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
 [![Rust 1.85+](https://img.shields.io/badge/rust-1.85%2B-orange.svg)](https://www.rust-lang.org)
 [![MCP Protocol](https://img.shields.io/badge/MCP-2024--11--05-purple.svg)](https://modelcontextprotocol.io)
@@ -73,7 +73,19 @@ graph TD
 ## Installation
 
 ```bash
-cargo install asc-mcp
+cargo install menot-you-mcp-asc
+```
+
+Or via npm (runs native binary):
+
+```bash
+npx @menot-you/mcp-asc
+```
+
+Or via pip:
+
+```bash
+pip install menot-you-mcp-asc
 ```
 
 Or build from source:

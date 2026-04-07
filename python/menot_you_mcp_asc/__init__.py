@@ -1,4 +1,4 @@
-"""asc-mcp — MCP server for Apple App Store Connect API."""
+"""menot-you-mcp-asc — MCP server for Apple App Store Connect API."""
 
 import os
 import platform
@@ -6,10 +6,10 @@ import subprocess
 import sys
 from pathlib import Path
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 BINARY = "asc-mcp"
-REPO = "menot-you/asc-mcp"
+REPO = "menot-you/apple-store-connect"
 
 
 def _get_platform() -> str:
@@ -24,7 +24,7 @@ def _get_platform() -> str:
     raise RuntimeError(
         f"Unsupported platform: {system}-{machine}. "
         f"Supported: darwin-arm64, linux-x86_64. "
-        f"Install from source: cargo install asc-mcp"
+        f"Install from source: cargo install menot-you-mcp-asc"
     )
 
 
@@ -55,7 +55,7 @@ def _binary_path() -> Path:
     except Exception as exc:
         raise RuntimeError(
             f"asc-mcp: failed to download binary — {exc}\n"
-            f"Install from source: cargo install asc-mcp"
+            f"Install from source: cargo install menot-you-mcp-asc"
         ) from exc
 
     return dest
