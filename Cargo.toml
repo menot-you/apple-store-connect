@@ -24,6 +24,10 @@ path = "src/main.rs"
 name = "asc-mcp"
 path = "src/main.rs"
 
+[[bin]]
+name = "apple-store-connect"
+path = "src/main.rs"
+
 [dependencies]
 anyhow = "1"
 chrono = { version = "0.4", features = ["serde"] }
