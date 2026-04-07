@@ -12,6 +12,18 @@ keywords = ["mcp", "xcode-cloud", "app-store-connect", "apple", "ci-cd"]
 categories = ["development-tools", "command-line-utilities"]
 exclude = [".github/", "tests/fixtures/"]
 
+[lib]
+name = "asc_mcp"
+path = "src/lib.rs"
+
+[[bin]]
+name = "asc"
+path = "src/main.rs"
+
+[[bin]]
+name = "asc-mcp"
+path = "src/main.rs"
+
 [dependencies]
 anyhow = "1"
 chrono = { version = "0.4", features = ["serde"] }
