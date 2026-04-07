@@ -1,6 +1,6 @@
 {
   "name": "asc-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server for Apple App Store Connect API — Xcode Cloud, app management, reviews, sales reports.",
   "license": "AGPL-3.0-or-later",
   "repository": { "type": "git", "url": "https://github.com/menot-you/apple-store-connect" },
