@@ -18,8 +18,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/menot-you/asc-mcp"
-Repository = "https://github.com/menot-you/asc-mcp"
+Homepage = "https://github.com/menot-you/apple-store-connect"
+Repository = "https://github.com/menot-you/apple-store-connect"
 
 [project.scripts]
 asc-mcp = "asc_mcp:main"

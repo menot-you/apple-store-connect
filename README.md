@@ -1,9 +1,11 @@
 # asc-mcp
 
-[![CI](https://github.com/menot-you/asc-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/menot-you/asc-mcp/actions/workflows/ci.yml)
+[![CI](https://github.com/menot-you/apple-store-connect/actions/workflows/ci.yml/badge.svg)](https://github.com/menot-you/apple-store-connect/actions/workflows/ci.yml)
 [![crates.io](https://img.shields.io/crates/v/asc-mcp.svg)](https://crates.io/crates/asc-mcp)
 [![docs.rs](https://docs.rs/asc-mcp/badge.svg)](https://docs.rs/asc-mcp)
-[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](#license)
+[![npm](https://img.shields.io/npm/v/asc-mcp.svg)](https://www.npmjs.com/package/asc-mcp)
+[![PyPI](https://img.shields.io/pypi/v/asc-mcp.svg)](https://pypi.org/project/asc-mcp/)
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
 [![Rust 1.85+](https://img.shields.io/badge/rust-1.85%2B-orange.svg)](https://www.rust-lang.org)
 [![MCP Protocol](https://img.shields.io/badge/MCP-2024--11--05-purple.svg)](https://modelcontextprotocol.io)
 
@@ -77,8 +79,8 @@ cargo install asc-mcp
 Or build from source:
 
 ```bash
-git clone https://github.com/menot-you/asc-mcp
-cd asc-mcp
+git clone https://github.com/menot-you/apple-store-connect
+cd apple-store-connect
 cargo install --path .
 ```
 

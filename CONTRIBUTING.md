@@ -5,8 +5,8 @@ Thanks for taking the time to contribute. Here's everything you need to get star
 ## Development Setup
 
 ```bash
-git clone https://github.com/menot-you/asc-mcp
-cd asc-mcp
+git clone https://github.com/menot-you/apple-store-connect
+cd apple-store-connect
 cargo build
 cargo test
 ```
