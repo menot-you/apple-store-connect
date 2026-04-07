@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "menot-you-mcp-asc"
-version = "0.2.0"
+version = "0.7.0"
 description = "MCP server for Apple App Store Connect API — Xcode Cloud, app management, reviews, sales reports."
 readme = "../README.md"
 license = "AGPL-3.0-or-later"
