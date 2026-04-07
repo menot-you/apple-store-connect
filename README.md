@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/logo.png" alt="nott" width="120" />
+
 # Apple Store Connect
 
 [![CI](https://github.com/menot-you/apple-store-connect/actions/workflows/ci.yml/badge.svg)](https://github.com/menot-you/apple-store-connect/actions/workflows/ci.yml)
