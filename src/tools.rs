@@ -17,6 +17,7 @@ use crate::client::AscClient;
 #[derive(Clone)]
 pub struct AscMcpServer {
     client: Arc<AscClient>,
+    #[allow(dead_code)]
     tool_router: ToolRouter<Self>,
 }
 
